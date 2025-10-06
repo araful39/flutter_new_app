@@ -1,8 +1,6 @@
 import 'package:auto_animated/auto_animated.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application/features/authentication/presentation/log_in_screen.dart';
-import 'package:flutter_application/features/home/presentation/home_screen.dart';
-import 'package:flutter_application/splash_screen.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 

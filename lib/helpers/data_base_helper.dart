@@ -8,14 +8,14 @@ class DatabaseHelper {
 
   static Database? _database;
 
-  // Get database instance
+
   Future<Database> get database async {
     if (_database != null) return _database!;
     _database = await initDB();
     return _database!;
   }
 
-  // Initialize database
+
   Future<Database> initDB() async {
     String path = join(await getDatabasesPath(), 'products.db');
     return await openDatabase(
@@ -36,19 +36,19 @@ class DatabaseHelper {
     );
   }
 
-  // Insert product
+  
   Future<int> insertProduct(Map<String, dynamic> product) async {
     final db = await database;
     return await db.insert('products', product);
   }
 
-  // Get all products
+ 
   Future<List<Map<String, dynamic>>> getProducts() async {
     final db = await database;
     return await db.query('products', orderBy: 'id DESC');
   }
 
-  // Update product
+
   Future<int> updateProduct(Map<String, dynamic> product) async {
     final db = await database;
     return await db.update(
@@ -59,7 +59,7 @@ class DatabaseHelper {
     );
   }
 
-  // Delete product
+
   Future<int> deleteProduct(int id) async {
     final db = await database;
     return await db.delete(
@@ -69,10 +69,16 @@ class DatabaseHelper {
     );
   }
 
-  // Get product count
+
   Future<int> getProductCount() async {
     final db = await database;
     final x = await db.rawQuery('SELECT COUNT(*) as count FROM products');
     return Sqflite.firstIntValue(x) ?? 0;
+  }
+
+
+  Future<void> clearAll() async {
+    final db = await database;
+    await db.delete('products');
   }
 }

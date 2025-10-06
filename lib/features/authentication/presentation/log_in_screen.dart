@@ -20,7 +20,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void _login() async {
     if (_formKey.currentState!.validate()) {
       EasyLoading.show(status: 'Logging in...');
-   
+
       String? savedEmail = appData.read(kKeyEmail);
       String? savedPassword = appData.read(kKeyPassword);
       await Future.delayed(const Duration(seconds: 1)); // simulate loading
@@ -32,8 +32,10 @@ class _LoginScreenState extends State<LoginScreen> {
         EasyLoading.showSuccess('Login Successful!');
         await appData.write(kKeyIsLoggedIn, true);
         Navigator.pushReplacement(
-            // ignore: use_build_context_synchronously
-            context, MaterialPageRoute(builder: (_) => const HomeScreen()));
+          // ignore: use_build_context_synchronously
+          context,
+          MaterialPageRoute(builder: (_) => const HomeScreen()),
+        );
       } else {
         EasyLoading.showError('Invalid email or password');
       }
@@ -57,8 +59,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     labelText: 'Email',
                     border: OutlineInputBorder(),
                   ),
-                  validator: (value) =>
-                      value!.isEmpty ? 'Enter email' : null,
+                  validator: (value) => value!.isEmpty ? 'Enter email' : null,
                 ),
                 const SizedBox(height: 20),
                 TextFormField(
@@ -68,8 +69,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     labelText: 'Password',
                     border: OutlineInputBorder(),
                   ),
-                  validator: (value) =>
-                      value!.isEmpty ? 'Enter password' : null,
+                  validator:
+                      (value) => value!.isEmpty ? 'Enter password' : null,
                 ),
                 const SizedBox(height: 30),
                 SizedBox(
@@ -83,9 +84,11 @@ class _LoginScreenState extends State<LoginScreen> {
                 TextButton(
                   onPressed: () {
                     Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (_) => const RegistrationScreen()));
+                      context,
+                      MaterialPageRoute(
+                        builder: (_) => const RegistrationScreen(),
+                      ),
+                    );
                   },
                   child: const Text('Don\'t have an account? Register'),
                 ),
